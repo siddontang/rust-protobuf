@@ -87,7 +87,7 @@ pub trait Message: fmt::Debug + Clear + Any + 'static {
 
     fn write_to_bytes(&self) -> ProtobufResult<Vec<u8>> {
         // TODO: compute message size and reserve that size
-        let mut v = Vec::new();
+        let mut v = Vec::with_capacity(4096);
         try!(self.write_to_vec(&mut v));
         Ok(v)
     }
